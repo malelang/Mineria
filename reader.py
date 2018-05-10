@@ -7,9 +7,6 @@ for i in range(0,len(b)):
     c=b[i].split()
     d.append(c)
 for i in range(0,len(d)):
-    #print "enter"
-    #print len(d[i])
-    #print d[i]
     for j in range (0,len(d[i])):
         if (d[i][j]=="name"):
             flag=1
@@ -18,24 +15,21 @@ for i in range(0,len(d)):
     if flag==0:
         d[i+1]=d[i]+d[i+1]
     else:
-        """print "this is the last line"
-        print d[i]
-        print len(d[i])
-        d[i].pop()
-        print d[i]
-        print len(d[i])"""
         e.append(d[i])
         d[i]=[]
         flag=0
-with open("dataset.txt","w") as newdata:
-    newdata.seek(0)
-    newdata.truncate()
-    for i in range(0,len(e)):
-        t=len(e[i])
-        print t
-        for j in range(0,t):
-            newdata.write(str(e[i][j])
-            if (j==t):
-                newdata.write("\n")
-            else:
-                newdata.write(",")
+
+newdata=open("dataset.txt","w")
+newdata.seek(0)
+newdata.truncate()
+
+for i in range(0,len(e)):
+    for j in range(0,len(e[i])-1):
+        newdata.write(str(e[i][j]))
+        if j==len(e[i])-2:
+            print "salto de linea"
+            newdata.write("\n")
+        else:
+            print "coma"
+            print j
+            newdata.write(",")
