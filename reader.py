@@ -1,4 +1,4 @@
-vda=["cleveland.txt","longbeach.txt","hungarian.txt"]
+vda=["cleveland.txt","longbeach.txt","hungarian.txt","switzerland.txt"]
 id=1
 vc=[]
 for k in range(0,len(vda)):
@@ -29,7 +29,7 @@ for k in range(0,len(vda)):
     for i in range(0,len(e)):
         vc.append(e[i])
 
-newdata=open("ecgwrist.txt","w")
+newdata=open("temporal.txt","w")
 newdata.seek(0)
 newdata.truncate()
 newdata.write("@relation ecgwrist \n")
