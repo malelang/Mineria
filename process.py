@@ -54,25 +54,37 @@ for i in range(0,len(b)):
 #AQUI QUITAMOS TODOS AQUELLOS ATRIBUTOS QUE TENGAN MAS DEL 40 PORCIENTO DE
 #INFORMACION PERDIDA
 
+#Inicialize list of -9s by 75 attributes
+#vfaltas is set for all raws in d
 vfaltas=[0]*75
-for i in range(0,len(d)):
+Errors = 0
+TotalValues = 0
+
+for i in range(0,len(d)): 
+    
     for j in range(0,len(d[i])):
+        
+        TotalValues = TotalValues + 1
+        
         if(d[i][j]=="-9"):
+            #Count number of -9s in dst
             vfaltas[j]=vfaltas[j]+1
+            Errors = Errors +1
+print("%%%%%%%%%%%%%%%  ANALYSIS  %%%%%%%%%%%%%%%%%%%")
+print("1. Total Missing Values: "+str(Errors))
+print("2. Total Values from temporal.txt: "+str(TotalValues))
+print("3. % Missing Values (-9): "+str(100*Errors/TotalValues)+"%")
 
 borrar=[]
 for i in range(0,len(vfaltas)):
     if(vfaltas[i]>(0.4*len(d))):
         borrar.append(i)
-
 borrar.sort(reverse=True)
-
 for i in range(0,len(d)):
     for j in borrar:
         del(d[i][j])
 for i in borrar:
     del(titulo[i+1])
-
 #AQUI QUITAMOS TODOS AQUELLOS ATRIBUTOS QUE NO ESTAN BIEN DESCRITOS Y POR LO
 #TANTO NO APORTAN INFORMACION IMPORTANTE O ESCLARECEDORA
 
@@ -84,12 +96,13 @@ for i in range(0,len(d)):
 for i in borrar:
     del(titulo[i+1])
 
+
 vfaltas=[0]*36
 for i in range(0,len(d)):
     for j in range(0,len(d[i])):
         if(d[i][j]=="-9"):
             vfaltas[j]=vfaltas[j]+1
-
+            
 #VAMOS A MIRAR UN ATRIBUTO POR UNO
 #comenzamos por PainLocation donde puede ser 0 o 1
 painloc=[]

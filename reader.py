@@ -3,13 +3,17 @@ id=1
 vc=[]
 for k in range(0,len(vda)):
     data=open(vda[k],"r")
+    #Save raw data
     cont=data.read()
+    #Separate by lines
     b=cont.splitlines()
     d=[]
     e=[]
     for i in range(0,len(b)):
+        #Separate columns
         c=b[i].split()
         d.append(c)
+    #Fetch data
     for i in range(0,len(d)):
         for j in range (0,len(d[i])):
             if (d[i][j]=="name"):
@@ -18,11 +22,11 @@ for k in range(0,len(vda)):
                 flag=0
         if flag==0:
             d[i+1]=d[i]+d[i+1]
-        else:
+        else:#Concatenate
             e.append(d[i])
             d[i]=[]
             flag=0
-
+    #Set index
     for i in range(0,len(e)):
         e[i][0]=id
         id=id+1
@@ -108,8 +112,6 @@ newdata.write("@attribute lvx4None real \n")
 newdata.write("@attribute lvfNone real \n")
 newdata.write("@attribute cathefNone real \n")
 newdata.write("@attribute junk real \n")
-
-
 for i in range(0,len(vc)):
     for j in range(0,len(vc[i])-1):
         newdata.write(str(vc[i][j]))
